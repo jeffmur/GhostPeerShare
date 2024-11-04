@@ -1,0 +1,10 @@
+\section{Performance}
+Shown in Table TODO, reveals a significant gap between the execution times on mobile devices and Linux desktop applications, highlighting serious inefficiencies in the mobile implementation that hinder meeting our operational targets.
+
+In our tests, preprocessing on mobile devices took an average of 17 seconds for a 1-minute video, which is far too slow. In contrast, the Linux desktop environment performs much better, with Bhattacharyya Coefficent and Cramer Distance measures averaging around 4.2 seconds, while Kullback-Leibler Divergence (KLD) averaged 8.5 seconds.
+
+For similarity computations under Fully Homomorphic Encryption (FHE), mobile performance is also lacking. The average times recorded are KLD at 400 ms, Cramer at 386 ms, and Bhattacharyya at 186 ms. These times are much slower than their plaintext (PT) counterparts, which average KLD at 3.8 ms, Cramer at 5.2 ms, and Bhattacharyya at 3.2 ms, indicating significant inefficiencies in mobile processing.
+
+Decryption time is 0.25 seconds, and network latency adds another 1.5 seconds. This cumulative delay worsens the overall performance on mobile platforms, making them significantly slower than the Linux desktop environment, which consistently meets our performance targets.
+
+In summary, the performance metrics show that while the Linux environment effectively processes video data and computes distance measures efficiently, the mobile implementation struggles with excessive delays, preventing it from delivering the necessary speed and responsiveness for effective application functionality.
