@@ -1,4 +1,8 @@
 \begin{equation}
-    D(i, j) = \left\lVert X_{1:i} - Y_{1:j} \right\rVert^2
+    C(i, j) = D(i, j) + \min \begin{cases}
+        C(i-1, j) \\
+        C(i, j-1) \\
+        C(i-1, j-1)
+    \end{cases}
     \label{eq:dtw}
 \end{equation}

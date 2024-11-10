@@ -138,14 +138,14 @@
 %
 % ----- acknowledgments
 %
-\acknowledgments{% \vskip2pc
-  % {\narrower\noindent
-  The author wishes to express sincere appreciation to
-  University of Washington, where he has had the opportunity
-  to work with the \TeX\ formatting system,
-  and to the author of \TeX, Donald Knuth, {\it il miglior fabbro}.
-  % \par}
-}
+% \acknowledgments{% \vskip2pc
+%   % {\narrower\noindent
+%   The author wishes to express sincere appreciation to
+%   University of Washington, where he has had the opportunity
+%   to work with the \TeX\ formatting system,
+%   and to the author of \TeX, Donald Knuth, {\it il miglior fabbro}.
+%   % \par}
+% }
 
 %
 % end of the preliminary pages
@@ -160,7 +160,7 @@
  
 \chapter {Introduction}
 
-This chapter outlines the challenges and opportunities presented by Fully Homomorphic Encryption libraries, particularly focusing on the Microsoft Simple Encrypted Arithmetic Library. We will examine the barriers new users face due to technical prerequisites and the role of stakeholders in advancing encryption technologies. The contributions of this project will be highlighted, emphasizing the development of a modular Dart interface that simplifies access to FHE capabilities across mobile platforms. We will explore how this integration can enhance the adoption of advanced encryption protocols in cross-platform applications. Lastly, the effectiveness of the implemented methods in assessing privacy-preserving video comparisons will be analyzed.
+This chapter outlines the challenges and opportunities presented by Fully Homomorphic Encryption (FHE) libraries, particularly focusing on the Microsoft Simple Encrypted Arithmetic Library. We examine the barriers new users face due to technical prerequisites and the role of stakeholders in advancing encryption technologies. The contributions of this project are highlighted, emphasizing the development of a modular Dart interface that simplifies access to FHE capabilities across mobile platforms. We explore how this integration can enhance the adoption of advanced encryption protocols in cross-platform applications. Lastly, the respective implemented methods in assessing privacy-preserving video comparisons are analyzed for their efficiency.
 
 \input{1 Introduction/1.1 Problem Statement}
 \input{1 Introduction/1.2 Stakeholders}
@@ -170,7 +170,7 @@ This chapter outlines the challenges and opportunities presented by Fully Homomo
  
 \chapter{Background}
 
-This section outlines the technologies and methods used in this project. We start with Flutter, an open-source framework for building cross-platform apps, and highlight its benefits for mobile development. Next, we introduce the Simple Encrypted Arithmetic Library (SEAL) and explain how it allows computations on encrypted data, which is crucial for our implementation. Finally, we discuss the distance measures used for privacy-preserving video similarity analysis, focusing on Kullback-Leibler Divergence (KLD), Bhattacharyya Coefficient (BC), and Cramer’s Distance (CD). We will examine the properties and uses of each metric to show their importance in our work.
+This section outlines the technologies and methods used in this research. We start with Flutter, an open-source framework for building cross-platform apps, and highlight its benefits for mobile development. Next, we introduce the Simple Encrypted Arithmetic Library and explain the process of performing computations on encrypted data. Finally, we discuss the distance measures used for privacy-preserving video similarity analysis, focusing on Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer’s Distance. We examine the properties and uses of each metric in order to show their importance in our work.
 
 \input{2 Background/2.1 Flutter}
 \input{2 Background/2.2 SEAL}
@@ -200,7 +200,7 @@ This methodology is grounded in a modular design, with each Dart plugin structur
 
 \chapter{Results}
 
-In this section, we compare our implementation to the foundational contributions of SSO and PPVS. In order to evaluate the accuracy of Fully Homomorphic Encryption Library plugin in Dart, we measure the amount of noise generated during encrypted operations. Next, we compare our implementation of our distance measures using the original pre-processed video frames from SSO. Next, we compare the same video from various angles and determine the accuracy of our implementation. Next, we compare the distance measures for similar scenes against different scenes. Finally, we compare the performance across multiple linux and android devices.
+In this section, we compare our implementation to the foundational contributions of SSO and Pop-Share. In order to evaluate the accuracy of Fully Homomorphic Encryption Library plugin in Dart, we measure the amount of noise generated during encrypted operations. Next, we compare our implementation of our distance measures using the original pre-processed video frames from SSO. Next, we compare the same video from various angles and determine the accuracy of our implementation. Next, we compare the distance measures for similar scenes against different scenes. Finally, we compare the performance across multiple linux and android devices.
 
 \input{5 Results/5.1 Noise Accumulation}
 \input{5 Results/5.2 Pop-Share Distance Measure}
@@ -240,13 +240,5 @@ This chapter examines the implementation and future potential of the Fully Homom
 \chapter{Tables}
  
 \input{Appendix/ANN Trials}
-
-\vita{Jim Fox is a Software Engineer with IT Infrastructure Division at the University of Washington.
-His duties do not include maintaining this package.  That is rather
-an avocation which he enjoys as time and circumstance allow.
-
-He welcomes your comments to {\tt fox@uw.edu}.
-}
-
 
 \end{document}

@@ -1,15 +1,15 @@
 \section{Distance Measures}
 
-To accurately measure the similarity between videos while preserving privacy, this project utilizes Kullback-Leibler Divergence (KLD), Bhattacharyya Coefficient (BC), and Cramer’s Distance (CD). Following the work of Pop-Share [3], which established these measures as effective baselines for video similarity analysis. These three metrics were chosen over other probability distribution algorithms due to their reliance on basic arithmetic for homomorphic computations.
+To accurately measure the similarity between videos while preserving privacy, this project utilizes Kullback-Leibler Divergence (KLD), Bhattacharyya Coefficient (BC), and Cramer’s Distance (CD). Pop-Share [6] established these metrics as an effective indicator for comparing video similarity. Unlike other probability distribution algorithms that involve complex calculations, these three metrics rely primarily on element-wise addition, subtraction, and multiplication of vectors. This simplicity is crucial for their integration with Fully Homomorphic Encryption, as it allows for efficient computation on encrypted data without decryption.
 
-Kullback-Leibler Divergence (KLD) [4] is a state-of-the-art measure of how one probability distribution diverges from a second, expected probability distribution. A limitation of KLD is that it is not symmetric, in that the divergence from distribution P to Q is not necessarily the same as from Q to P, which may complicate its interpretation.
+Kullback-Leibler Divergence (KLD) [7] is a state-of-the-art measure of how one probability distribution diverges from a second, expected probability distribution. A limitation of KLD is that it is not symmetric, in that the divergence from distribution P to Q is not necessarily the same as from Q to P, which may complicate its interpretation.
 
 \input{2 Background/2.3 Equations/kld}
 
-Bhattacharyya Coefficient (BC) [5] is a measure that quantifies the amount of overlap between two probability distributions, making it useful in various fields such as pattern recognition and image processing. The coefficient ranges from 0 to 1, where a value closer to 1 indicates higher similarity between the distributions.
+Bhattacharyya Coefficient (BC) [8] is a measure that quantifies the amount of overlap between two probability distributions, making it useful in various fields such as pattern recognition and image processing. The coefficient ranges from 0 to 1, where a value closer to 1 indicates higher similarity between the distributions.
 
 \input{2 Background/2.3 Equations/bc}
 
-Cramer’s Distance (CD) [6] is a measure used to quantify the dissimilarity between two probability distributions. It is based on the concept of the characteristic function and finds applications in statistical inference and hypothesis testing. One limitation of Cramer’s Distance is its sensitivity to sample size, which can result in inaccuracies, particularly when the sample size is small.
+Cramer’s Distance (CD) [9] is a measure used to quantify the dissimilarity between two probability distributions. It is based on the concept of the characteristic function and finds applications in statistical inference and hypothesis testing. One limitation of Cramer’s Distance is its sensitivity to sample size, which can result in inaccuracies, particularly when the sample size is small.
 
 \input{2 Background/2.3 Equations/cd}

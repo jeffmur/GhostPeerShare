@@ -6,19 +6,19 @@ Fully homomorphic encryption (FHE) enables secure computations on encrypted data
 
 To accommodate the limitations of FHE, we cannot directly encrypt the input array of doubles for score computation. Instead, we make adjustments to certain parameters before encryption, tailored to each algorithm’s requirements. The encrypted parameters and any associated data are stored as binary files, with each algorithm (e.g., kld\_logX) using 60 binary files, each representing one second of a one-minute video. This structure is particularly helpful for cases where video lengths differ, as it simplifies the trimming process. The binary files are then archived into an .enc file format, which is unique to our application and contains both the encrypted data and a metadata JSON file with relevant video details (e.g., timestamp, length, frames per second). On Linux, the archive averages around 2 MB for 1 minute of video.
 
-To compute the encrypted Kullback-Leibler Divergence, noted as K\_enc in Figure \ref{eq:fhe_kld_enc}, the ciphertext modification requires three parameters: X, logX, and Y, where X and logX are encrypted arrays, and Y is plaintext. The modified ciphertext is obtained by multiplying each encrypted double in X by the difference between logX and logY. This yields an encrypted list of doubles, which, when decrypted and summed, results in the divergence of Y from X, shown in Figure \ref{eq:fhe_kld_decrypt}.
+To compute the encrypted Kullback-Leibler Divergence using FHE, noted as $KLD_{enc}$ in Equation \ref{eq:fhe_kld_enc}, the ciphertext modification requires three parameters: X, logX, and Y, where X and logX are encrypted arrays, and Y is plaintext. The modified ciphertext is obtained by multiplying each encrypted double in X by the difference between logX and logY. This yields an encrypted list of doubles, which, when decrypted and summed, results in the divergence of Y from X, shown in Equation \ref{eq:fhe_kld_decrypt}.
 
 \input{4 Design/4.2 Equations/fhe_kld}
 
 \input{4 Design/4.2 Equations/fhe_kld_decrypt}
 
-For the Bhattacharyya Coefficient, indicated as BC\_enc in Figure \ref{eq:fhe_bc_enc}, the square root of X is taken before encryption. This calculation involves two arrays, sqrtX and Y, both floating-point arrays. For each encrypted double in sqrtX, we multiply by the square root of Y, yielding an encrypted list. Decrypting and summing this list gives the measure of overlap between the two probability distributions, shown in Figure \ref{eq:fhe_bc_decrypt}.
+For the Bhattacharyya Coefficient, indicated as $BC_{enc}$ in Equation \ref{eq:fhe_bc_enc}, the square root of X is taken before encryption. This calculation involves two arrays, sqrtX and Y, both floating-point arrays. For each encrypted double in sqrtX, we multiply by the square root of Y, yielding an encrypted list. Decrypting and summing this list gives the measure of overlap between the two probability distributions, shown in Equation \ref{eq:fhe_bc_decrypt}.
 
 \input{4 Design/4.2 Equations/fhe_bc}
 
 \input{4 Design/4.2 Equations/fhe_bc_decrypt}
 
-To calculate the Cramer Distance, or CD\_enc, the cumulative distribution of X is computed iteratively so that the last element sums to one. This requires two arrays, X and Y, of floating-point numbers. The computation squares the difference between corresponding elements in X and Y, resulting in an encrypted list of values, which, when decrypted, summed, and square-rooted, provides the distance between the distributions.
+To calculate the Cramer Distance, or $CD_enc$ in Equation \ref{eq:fhe_cd_enc}, the cumulative distribution of X is computed iteratively so that the last element sums to one. This requires two arrays, X and Y, of floating-point numbers. The computation squares the difference between corresponding elements in X and Y, resulting in an encrypted list of values, which, when decrypted, summed, and square-rooted, provides the distance between the distributions, shown in Equation \ref{eq:fhe_cd_decrypt}.
 
 \input{4 Design/4.2 Equations/fhe_cd}
 

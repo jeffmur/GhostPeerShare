@@ -1,10 +1,37 @@
 \section{Performance}
-Shown in Table TODO, reveals a significant gap between the execution times on mobile devices and Linux desktop applications, highlighting serious inefficiencies in the mobile implementation that hinder meeting our operational targets.
 
-In our tests, preprocessing on mobile devices took an average of 17 seconds for a 1-minute video, which is far too slow. In contrast, the Linux desktop environment performs much better, with Bhattacharyya Coefficent and Cramer Distance measures averaging around 4.2 seconds, while Kullback-Leibler Divergence (KLD) averaged 8.5 seconds.
+To compare this implementation to the mobile Proof of Presence Share (Pop-Share) application, preprocessing speed for one-minute videos was benchmarked, and the duration of encrypted operations was measured against plaintext operations. This comparison allowed for assessment of the implementation's efficiency and quantification of the impact of encryption on performance.
 
-For similarity computations under Fully Homomorphic Encryption (FHE), mobile performance is also lacking. The average times recorded are KLD at 400 ms, Cramer at 386 ms, and Bhattacharyya at 186 ms. These times are much slower than their plaintext (PT) counterparts, which average KLD at 3.8 ms, Cramer at 5.2 ms, and Bhattacharyya at 3.2 ms, indicating significant inefficiencies in mobile processing.
+\input{5 Results/Tables/5.5 Pre-processing}
 
-Decryption time is 0.25 seconds, and network latency adds another 1.5 seconds. This cumulative delay worsens the overall performance on mobile platforms, making them significantly slower than the Linux desktop environment, which consistently meets our performance targets.
+Experiments used one-minute videos with h264 encoding, results shown in Table \ref{table:preprocessing_times}. On a Pixel 3 XL mobile phone, preprocessing with OpenCV required 438 seconds (about 7.3 minutes) on average. In contrast, Pop-Share on a Pixel 2 took only 17 seconds on average using FFMpeg. This difference stems from the use of different libraries for preprocessing. Limited operating system support for FFMpeg plugins restricted plugin selection to one compatible with both Linux and Android. On a Linux PC with OpenCV, preprocessing  took 111 seconds (about 2 minutes) on average. This result demonstrates the PC operated approximately four times faster than the average of the two mobile devices. The disparity likely arises from differences in CPU thread availability and speed. The PC has 32 threads at 3.4 GHz, while both Android phones have 8 threads at about 2.5 GHz.
 
-In summary, the performance metrics show that while the Linux environment effectively processes video data and computes distance measures efficiently, the mobile implementation struggles with excessive delays, preventing it from delivering the necessary speed and responsiveness for effective application functionality.
+Dart code executes in isolates, which resemble threads but with separate memory allocations. Flutter applications perform all operations on a single isolate. Although the implementation creates an isolate to count bytes in each one-second segment, it does not incorporate parallelism. The frame parsing process remains sequential. This design choice prioritized stability over performance to ensure consistent operation. Table \ref{table:preprocessing_times} presents the execution times on mobile and Linux desktop environments. The data reveals substantial differences that highlight inefficiencies in the mobile implementation. These inefficiencies prevent achievement of operational targets relative to the Pop-Share baseline. Potential optimization strategies are explored in Section DISCUSSION.
+
+For encryption and encoding of each distance measure varies, as the parameters to the Fully Homomorphic distance measure implementation is different, described in further detail in Section METHODS. Unfortunately, we cannot compare these metrics to Pop-Share as they were not explicitly mentioned in their evaluation. However, our approach treats the preprocessing of video frames as an independent transaction, separate from the encoding and encryption steps. Shown in Table \ref{table:cryptography}, the Kullback-Leibler Divergence (KLD) encryption is about twice that of Bhattacharyya and Cramer due to the requirement of double the amount of data. This pattern was also indicated in Pop-Share.
+
+\input{5 Results/Tables/5.5 Cryptography}
+
+The Fully Homomorphic Encryption computations, shown in Table \ref{table:fhe_operations}, are within ±20\% of Pop-Share, validating our abstraction design and interface implementation. This performance increase is likely due to the advancements in Microsoft SEAL, Pop-Share used version v3.3, while our implementation uses v4.1.
+
+\begin{itemize}
+    \item Kullback-Leibler Divergence: Pop-Share reported an average time of 400 milliseconds, whereas our implementation achieved 346 milliseconds, representing a 13.5\% increase in performance.
+    \item Cramer Distance: Pop-Share reported an average time of 386 milliseconds, whereas our implementation achieved 310 milliseconds, representing a 19.4\% increase in performance.
+    \item Bhattacharyya Coefficient: Pop-Share reported an average time of 186 milliseconds, whereas our implementation yielded 203 milliseconds, representing a 9.1\% decrease in performance.
+\end{itemize}
+
+\input{5 Results/Tables/5.5 FHE Operations}
+
+The plaintext computations, shown in Table \ref{table:fhe_operations}, are much faster than expected, a significant performance increase in Dart compared to Python implementation. This performance increase may be due to the underlying data structure selection in Dart.
+
+\begin{itemize}
+    \item Kullback-Leibler Divergence: Pop-Share reported an average time of 3.8 milliseconds, whereas our implementation achieved 1.12 milliseconds, representing a 70.5\% increase in performance.
+    \item Cramer Distance: Pop-Share reported an average time of 5.2 milliseconds, whereas our implementation achieved 0.45 milliseconds, representing a 91.35\% increase in performance.
+    \item Bhattacharyya Coefficient: Pop-Share reported an average time of 3.2 milliseconds, whereas our implementation achieved 0.41 milliseconds, representing a 87.5\% increase in performance.
+\end{itemize}
+
+To extract a distance measure from the archive, we calculate the score by decrypting each ciphertext in the modified byte count array and summing all the elements. Cramer's method differs as it involves calculating the square root of the result. Shown in Table \ref{table:cryptography}, Pop-Share had an average duration of 250 milliseconds, while our Android implementation took 588 milliseconds. Although the difference is insignificant, it suggests potential differences in our implementation.
+
+In total on Android, to upload and convert the video frames into byte count arrays took, on average, 438 seconds (7 minutes) for a one-minute video. To encode, encrypt, and generate the archive took, on average, 2 seconds. When performing Fully Homomorphic Encryption (FHE) operations on all ciphertexts took, on average, 857 milliseconds. Finally, decryption took, on average, 588 milliseconds. In total, it took 3.4 seconds to derive a similarity score using FHE. As the preprocessing is expensive, it only has to be performed once for every video uploaded to the application.
+
+Overall, this study benchmarked the performance of our implementation on Android to the existing Pop-Share application. The results showed significantly slower preprocessing times due to library limitations, but the encryption, computation, and decryption times were competitive to Pop-Share. Our implementation demonstrates high efficiency of the Fully Homomorphic Encryption operations. Notably, plaintext computations were significantly faster in our implementation.

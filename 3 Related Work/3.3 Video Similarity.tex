@@ -1,8 +1,10 @@
 \section{Video Similarity}
 
+Alternatives to SSO are advanced applications on top of existing similarity score algorithms. These novel approaches are typically not restricted to resource-constrained environments. Using content-based algorithms, Shan and Lee [18] presented a series of optimal mapping algorithms to detect similarity between video frames of unequal sizes. In addition, Wu, Zhuang, and Pan [19] present a similar shot graphing algorithm with the intention of identifying similar videos within a large database of videos. An enhancement of Bhattacharyya, was proposed by Loza, Mihaylova, Canagarajah, and Bull [20] to generate a particle filter that would iterate over each sample to predict and resample based on the similarity. Overall, these methods may be adapted to be implemented with fully homomorphic encryption, however they would need to be simplified to use basic arithmetic, and may require many parameters to produce a score.
+
 As a part of SSO and Pop-Share, a video was represented in probability distribution form, in order to compare two probability distributions, there are many methods to produce a similarity score. In this section, we cover alternative considerations for computing a similarity score, as well as, acknowledge alternative approaches to comparing videos.
 
-Jensen-Shannon Divergence (JSD) [15] is a symmetric version of Kullback-Leibler Divergence that quantifies the similarity between two probability distributions. It is widely used in information retrieval and clustering. A limitation is that while it provides a measure of similarity, it may not capture finer details of the distributions being compared. 
+Jensen-Shannon Divergence (JSD) [15] is a symmetric version of Kullback-Leibler Divergencethat quantifies the similarity between two probability distributions. It is widely used in information retrieval and clustering. A limitation is that while it provides a measure of similarity, it may not capture finer details of the distributions being compared. 
 
 \input{3 Related Work/3.3 Equations/jsd}
 
@@ -10,9 +12,9 @@ The Pearson Correlation Coefficient (PCC) [16] measures the linear correlation b
 
 \input{3 Related Work/3.3 Equations/pcc}
 
-Dynamic Time Warping (DTW) [17] is an algorithm used to measure similarity between two temporal sequences that may vary in speed. It has applications in speech recognition, data mining, and video analysis. One limitation of DTW is its computational complexity, particularly for long sequences, which can make it less suitable for real-time applications. Alternatives to SSO are advanced applications on top of existing similarity score algorithms. These novel approaches are typically not restricted to resource-constrained environments.
+Dynamic Time Warping (DTW) [17] is an algorithm used to measure similarity between two temporal sequences that may vary in speed. It has applications in speech recognition, data mining, and video analysis. One limitation of DTW is its computational complexity, particularly for long sequences, which can make it less suitable for real-time applications. 
 
-\input{3 Related Work/3.3 Equations/dtw_recur}
 \input{3 Related Work/3.3 Equations/dtw}
 
+Alternatives to SSO are advanced applications on top of existing similarity score algorithms. These novel approaches are typically not restricted to resource-constrained environments.
 Using content-based algorithms, Shan and Lee [18] presented a series of optimal mapping algorithms to detect similarity between video frames of unequal sizes. In addition, Wu, Zhuang, and Pan [19] present a similar shot graphing algorithm with the intention of identifying similar videos within a large database of videos. An enhancement of Bhattacharyya, was proposed by Loza, Mihaylova, Canagarajah, and Bull [20] to generate a particle filter that would iterate over each sample to predict and resample based on the similarity. Overall, these methods may be adapted to be implemented with fully homomorphic encryption, however they would need to be simplified to use basic arithmetic, and may require many parameters to produce a score.

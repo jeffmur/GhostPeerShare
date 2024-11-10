@@ -814,6 +814,7 @@
    \@starttoc{lot}
     }
    }
+
 %
 %  Bibliography
 %
