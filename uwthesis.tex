@@ -98,7 +98,7 @@
 \Year{2024}
 \Program{Cybersecurity Engineering}
 
-\Chair{Brent Lagesse}{Ph.D}{Computing \& Software Systems}
+\Chair{Brent Lagesse}{Dr.}{Computing \& Software Systems}
 \Signature{Geethapriya Thamilarasu}
 \Signature{Yang Peng}
 
@@ -190,7 +190,7 @@ This section reviews significant advancements in Fully Homomorphic Encryption (F
  
 \chapter{Design}
 
-This methodology is grounded in a modular design, with each Dart plugin structured to support additional cryptographic libraries and extended functionality. The implementation consists of three core components: two Dart plugins and a Flutter application. The Fully Homomorphic Encryption (FHE) Library Plugin integrates Microsoft SEAL, exposing its FHE capabilities to Dart and Flutter communities. The Distance Measure Plugin provides implementations of Kullback-Leibler Divergence, Cramer Distance, and Bhattacharyya Coefficient, along with their fully homomorphic variants, enabling encrypted distance calculations. Together, these plugins support the Video Similarity Application, a Flutter-based Peer-to-Peer Pop-Share application, which facilitates secure video exchange with strong privacy guarantees.
+The core design principle is modularity, with each component designed to support additional cryptographic libraries and be flexible for future applications. The implementation includes three core components: two Dart plugins and a Flutter application. The Fully Homomorphic Encryption (FHE) Library plugin integrates Microsoft SEAL and delivers FHE arithmetic for the Dart and Flutter communities. The Distance Measure plugin implements Kullback-Leibler Divergence, Cramer Distance, and the Bhattacharyya Coefficient, along with simplified versions of their original algorithms developed for basic FHE arithmetic operations. GhostPeerShare relies on both Dart plugins as a Flutter-based peer-to-peer Pop-Share application. It enables secure video exchange with strong privacy guarantees.
 
 \input{4 Design/4.1 FHE Plugin}
 \input{4 Design/4.2 Distance Measure}
@@ -210,18 +210,8 @@ In this section, we compare our implementation to the foundational contributions
 
 % ========== Chapter 6
 
-\chapter{Discussion}
-
-This chapter examines the implementation and future potential of the Fully Homomorphic Encryption Library (FHEL) Plugin and the Distance Measure Plugin. The FHEL Plugin enhances access to Fully Homomorphic Encryption (FHE) for mobile and Linux applications by integrating Microsoft SEAL, allowing Dart and Flutter developers to improve privacy in their apps with clear documentation and user-friendly interfaces. The Distance Measure Plugin further adds value by implementing advanced statistical measures like Kullback-Leibler Divergence, Cramer Distance, and Bhattacharyya Coefficient, facilitating computations on encrypted data. Together, these plugins support efficient resource management and high performance, establishing a foundation for future innovations in secure data exchange and privacy in mobile applications.
-
-\input{6 Discussion/6.1 Qualitative Analysis}
-\input{6 Discussion/6.2 Limitations}
-\input{6 Discussion/6.3 Future Work}
-
-% ========== Chapter 7
-
 \chapter{Conclusion}
-\input{7 Conclusion}
+\input{conclusion}
 
 %
 % ==========   Bibliography

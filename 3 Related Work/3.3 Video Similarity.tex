@@ -4,7 +4,7 @@ Using content-based algorithms, Shan and Lee \cite{Shan2002-sfs} presented a ser
 
 As a part of Similarity of Simultaneous Observation (SSO) \cite{Wu2019-SSO} and Proof of Presence Share (Pop-Share) \cite{Lagesse2021-PopShare}, a video was represented in probability distribution form, to compare two probability distributions, there are many methods to produce a similarity score. In this section, we cover alternative considerations for computing a similarity score, as well as, acknowledge alternative approaches to comparing videos.
 
-Jensen-Shannon Divergence \cite{Lin1991-jsd}, represented as $JSD$ in Equation \ref{eq:jsd}, is a symmetric adaption of Kullback-Leibler Divergence that quantifies the similarity between two probability distributions. Bounding the upper limit of KLD to 1, where 0 indicates high similarity and 1 indicates the maximum dissimilarity between the distributions.
+Jensen-Shannon Divergence \cite{Lin1991-jsd}, represented as $JSD$ in Equation \ref{eq:jsd}, is a symmetric adaption of Kullback-Leibler Divergence that quantifies the similarity between two probability distributions. It is bounding the upper limit of KLD to 1, where 0 indicates high similarity and 1 indicates the maximum dissimilarity between the distributions.
 
 \input{3 Related Work/3.3 Equations/jsd}
 
@@ -12,6 +12,6 @@ Pearson Correlation Coefficient \cite{Pearson1896-hp}, represented as $PCC$ in E
 
 \input{3 Related Work/3.3 Equations/pcc}
 
-Dynamic Time Warping (DTW) \cite{Sakoe1978-dtw}, represented as $C(i,j)$ in Equation \ref{eq:dtw}, is an algorithm that measures similarity between two-time series by finding the optimal alignment between them, even if they have different speeds or lengths. However, DTW has a high computational cost, especially for long sequences, which can limit its use in practice
+Dynamic Time Warping (DTW) \cite{Sakoe1978-dtw}, represented as $C(i,j)$ in Equation \ref{eq:dtw}, is an algorithm that measures similarity between two-time series by exhaustively finding the optimal alignment between them, even if they have different speeds or lengths. However, DTW has a high computational cost, especially for long sequences, which can limit its use in practice. 
 
 \input{3 Related Work/3.3 Equations/dtw}
