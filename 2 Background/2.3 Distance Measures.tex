@@ -1,5 +1,5 @@
 \section{Distance Measures}
-
+\label{sec:Background Distance Measures}
 To accurately measure the similarity between two videos, this project implements Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer’s Distance. Pop-Share \cite{Lagesse2021-PopShare} established these metrics as an effective indicator for comparing video similarity. Unlike other probability distribution algorithms that involve complex calculations, these three metrics rely primarily on element-wise addition, subtraction, and multiplication of vectors. This simplicity is crucial for their integration with Fully Homomorphic Encryption, as it allows for efficient computation on a list of encrypted floating-point numbers.
 
 Kullback-Leibler Divergence \cite{Kullback1951-bg}, represented as $KLD$ in Equation \ref{eq:kld}, is a state-of-the-art measure of how one probability distribution diverges from a second, expected probability distribution. A limitation of KLD is that it is not symmetric, in that the divergence from distribution P to Q is not necessarily the same as from Q to P, which may complicate its interpretation. The divergence ranges from 0 to positive infinity, where a value closer to 0 indicates high similarity between the distributions.

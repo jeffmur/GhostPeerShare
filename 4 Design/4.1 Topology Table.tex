@@ -1,13 +1,13 @@
 \begin{table}[h!]
 \centering
-\begin{tabular}{|l|l|p{8cm}|}
+\begin{tabular}{|l|l|p{9cm}|}
 \hline
-\textbf{Class} & \textbf{Language} & \textbf{Description} \\ \hline
-Seal & Dart & Entrypoint for end-user API, inherits Afhe \\ \hline
-Afhe & Dart & FHE Adapter from C to Dart \\ \hline
-FHE & C & Expose basic functionalities, passed by reference \\ \hline
-AFHE & C++ & Abstract definition of FHE functionalities \\ \hline
-SEAL & C++ & Concrete implementation of AFHE \\ \hline
+\textbf{File} & \textbf{Class} & \textbf{Description} \\ \hline
+seal.dart    & Seal    & Entry-point for the end-user API in Dart \\ \hline
+afhe.dart    & Afhe    & Dart adapter connecting to the C interface \\ \hline
+fhe.cpp      & N/A     & C interface bridging Dart and C++ \\ \hline
+afhe.h       & Afhe    & Pure abstract class defining the FHE contract \\ \hline
+aseal.cpp    & Aseal   & Concrete implementation of the Afhe abstraction \\ \hline
 \end{tabular}
 \caption{Class Structure Overview}
 \label{table:class-structure}

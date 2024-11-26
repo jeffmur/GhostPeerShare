@@ -1,9 +1,10 @@
 \section{Noise Accumulation}
 
-When performing fully homomorphic operations, a small amount of noise is introduced that affects the accuracy of the decrypted distance measure. If too much noise is accumulated, the plaintext cannot be recovered. Table \ref{table:mean-error} represents the baseline Mean Error from Pop-Share, compared to our implementation. For Kullback-Leibler Divergence, Cramer Distance, and Bhattacharyya Coefficient our implementation introduced half the amount of noise than the original.
-
-\input{5 Results/Tables/5.1 Mean Error Table}
+When performing fully homomorphic operations, a small amount of noise is introduced that affects the accuracy of the decrypted distance measure. If too much noise is accumulated, the plaintext cannot be recovered. Table \ref{table:mean-error} represents the baseline Mean Error from Pop-Share \cite{Lagesse2021-PopShare}, compared to our implementation. For Kullback-Leibler Divergence, Cramer Distance, and Bhattacharyya Coefficient our implementation introduced half the amount of noise than the original.
 
 As illustrated in Figure \ref{fig:pop-share-distance-measure}, our Dart implementation exhibits less variance compared to the Python baseline, allowing for a clearer distinction in mean error scores. This reduced variance indicates a more stable performance in our implementation, reinforcing the reliability of the distance measures employed. Furthermore, through automated unit tests, we have ensured that the scores do not differ more than $1.0e-7$ epsilon, confirming the consistency and accuracy of our calculations.
 
-Finally, the parameter choices within the encryption scheme-such as polynomial modulus degree, encoder scalar or array of modulus sizes-also play a significant role in noise management.
+\input{5 Results/Tables/5.1 Mean Error Table}
+
+Finally, the parameter choices within the encryption scheme-such as polynomial modulus degree, encoder scalar, or array of modulus sizes-also play a significant role in noise management.
+

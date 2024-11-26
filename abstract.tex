@@ -1,14 +1,9 @@
 \abstract{%
 
-% Background / Motivation
-Fully Homomorphic Encryption (FHE) schemes allow computations over encrypted data without access to the decryption key. Microsoft's Simple Encryption Arithmetic Library (SEAL) provides a state-of-the-art C++ library that enables addition, subtraction, and multiplication on encrypted integers or real numbers. However, SEAL is difficult to implement on Android due to outdated documentation and the required expertise in C++, Kotlin, and Gradle.
-% Objective / Problem Statement
-This work presents a natively-compiled Dart plugin that abstracts the underlying C/C++ library. This enables developers to access the full functionality of SEAL within other Dart plugins and Flutter applications.
-% Methodology
-To evaluate the versatility of the plugin, we employ two implementations: The Distance Measure Dart plugin and the GhostPeerShare Flutter application. The Distance Measure plugin implements Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer's Distance, along with their FHE counterparts. GhostPeerShare adapts the implementation from Proof of Presence Share (Pop-Share), a mobile application that can detect similar videos using FHE.
-% Results / Key Findings
-The resulting system builds upon the results of Pop-Share, achieving 0.9614 precision and an F1 score of 0.9709 for determining the same videos. Although video pre-processing was slower in GhostPeerShare, the average FHE computation time matched that of Pop-Share.
-% Contributions / Impact
-From these results, GhostPeerShare demonstrates a significant advancement in the accessibility of FHE within the mobile community.
+Fully Homomorphic Encryption (FHE) schemes allow computations over encrypted data without access to the decryption key. Microsoft's Simple Encryption Arithmetic Library (SEAL) provides a state-of-the-art C++ library that enables addition, subtraction, and multiplication on encrypted integers or real numbers. SEAL is difficult to implement on Android due to its outdated documentation. Furthermore, it requires expertise in C++, Kotlin, and Gradle.
+This project presents a natively compiled Dart plugin that abstracts the underlying C/C++ library. The FHEL plugin enables developers to access SEAL's full functionality within other Dart plugins and Flutter applications.
+To evaluate the versatility of the plugin, we employ two implementations: 1) the Distance Measure Dart plugin and 2) the GhostPeerShare Flutter application. The Distance Measure plugin implements Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer Distance, along with their FHE counterparts. GhostPeerShare adapts the implementation from Proof of Presence Share (Pop-Share), a mobile application that can detect similar videos using FHE. 
+GhostPeerShare achieved a precision score of 0.9614 and an F1 score of 0.9709 for identifying similar videos. Although video pre-processing was considerably slower, the average FHE computation of each distance measure matched that of Pop-Share.
+These results demonstrate that GhostPeerShare represents a significant advance in the accessibility of FHE within the mobile community.
 
 }
