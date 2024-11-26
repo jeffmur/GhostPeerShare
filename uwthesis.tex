@@ -160,7 +160,7 @@
  
 \chapter {Introduction}
 
-This chapter outlines the challenges and limitations of Microsoft's Simple Encrypted Arithmetic Library. Next, we identify beneficiaries and major stakeholders within the Fully Homomorphic Encryption (FHE) domain. Finally, we present a modular interface that grants access to FHE functionality on modern mobile applications.
+This chapter outlines the problem, identifies the beneficiaries, and describes the project's contributions. In Section \ref{sec:Problem Statement}, we summarize the problem statement. In Section \ref{sec:Stakeholders}, we identify beneficiaries and major stakeholders within the Fully Homomorphic Encryption (FHE) domain. In Section \ref{sec:Contributions}, we present a modular interface that grants access to FHE functionality on a state-of-the-art software development platform.
 
 \input{1 Introduction/1.1 Problem Statement}
 \input{1 Introduction/1.2 Stakeholders}
@@ -170,7 +170,7 @@ This chapter outlines the challenges and limitations of Microsoft's Simple Encry
  
 \chapter{Background}
 
-This section outlines the technologies and methods used in this research. We start with Flutter, an open-source framework for building cross-platform applications, and highlight its benefits for mobile development. Next, we introduce the Simple Encrypted Arithmetic Library and explain the process of performing computations on encrypted data. Finally, we discuss the distance measures used for privacy-preserving video similarity analysis, focusing on Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer’s Distance. We examine the properties and uses of each metric to show their importance in our work.
+This chapter outlines the technologies and methods used in this research. In Section \ref{sec:Background Flutter}, we start with Flutter, an open-source framework for building cross-platform applications, and highlight its benefits for mobile development. In Section \ref{sec:Background SEAL}, we introduce the Simple Encrypted Arithmetic Library and explain the process of performing computations on encrypted data. In Section \ref{sec:Background Distance Measures}, we discuss the distance measures used for privacy-preserving video similarity analysis, focusing on Kullback-Leibler Divergence, Bhattacharyya Coefficient, and Cramer’s Distance. We examine the properties and uses of each metric to show their importance in our work.
 
 \input{2 Background/2.1 Flutter}
 \input{2 Background/2.2 SEAL}
@@ -180,7 +180,7 @@ This section outlines the technologies and methods used in this research. We sta
  
 \chapter{Related Work}
 
-This section reviews significant advancements in Fully Homomorphic Encryption (FHE) and related methodologies relevant to this project. We begin with an overview of existing FHE libraries. Next, we examine the Proof of Presence Share methodology, an innovative application of FHE to compute video similarity. Finally, we discuss alternative video similarity measures.
+This chapter reviews important advances in Fully Homomorphic Encryption (FHE) and related methodologies relevant to this project. Section \ref{sec:Related FHE Libraries} begins with an overview of existing FHE libraries. In Section \ref{sec:Related Pop-Share}, we examine the Proof of Presence Share methodology, an innovative application of FHE to compute video similarity. In Section \ref{sec:Related Video Similarity}, we discuss alternative video similarity measures.
 
 \input{3 Related Work/3.1 FHE Libraries}
 \input{3 Related Work/3.2 Pop-Share}
@@ -190,7 +190,7 @@ This section reviews significant advancements in Fully Homomorphic Encryption (F
  
 \chapter{Design}
 
-The core design principle is modularity, with each component designed to support additional cryptographic libraries and be flexible for future applications. The implementation includes three core components: two Dart plugins and a Flutter application. The Fully Homomorphic Encryption (FHE) Library plugin integrates Microsoft SEAL and delivers FHE arithmetic for the Dart and Flutter communities. The Distance Measure plugin implements Kullback-Leibler Divergence, Cramer Distance, and the Bhattacharyya Coefficient, along with simplified versions of their original algorithms developed for basic FHE arithmetic operations. GhostPeerShare relies on both Dart plugins as a Flutter-based peer-to-peer Pop-Share application. It enables secure video exchange with strong privacy guarantees.
+The core design principle is modularity, with each component designed to support additional cryptographic libraries and be flexible for future applications. The implementation includes three core components: two Dart plugins and a Flutter application. In Section \ref{sec:Fully Homomorphic Encryption Library}, the Fully Homomorphic Encryption (FHE) Library plugin integrates Microsoft SEAL and delivers FHE arithmetic for the Dart and Flutter communities. In Section \ref{sec:Distance Measure Plugin}, the Distance Measure plugin implements Kullback-Leibler Divergence, Cramer Distance, and the Bhattacharyya Coefficient, along with simplified versions of their original algorithms developed for basic FHE arithmetic operations. In Section \ref{sec: Video Similarity Application}, GhostPeerShare relies on both Dart plugins as a Flutter-based peer-to-peer Pop-Share application. It enables secure video exchange with strong privacy guarantees.
 
 \input{4 Design/4.1 FHE Plugin}
 \input{4 Design/4.2 Distance Measure}
@@ -200,7 +200,7 @@ The core design principle is modularity, with each component designed to support
 
 \chapter{Results}
 
-In this section, we compare our implementation to the foundational contributions of SSO and Pop-Share. In order to evaluate the accuracy of Fully Homomorphic Encryption Library plugin in Dart, we measure the amount of noise generated during encrypted operations. Next, we compare our implementation of our distance measures using the original pre-processed video frames from SSO. Next, we compare the same video from various angles and determine the accuracy of our implementation. Next, we compare the distance measures for similar scenes against different scenes. Finally, we compare the performance across multiple linux and android devices.
+In this chapter, we compare our implementation to the foundational contributions of SSO and Pop-Share. In order to evaluate the accuracy of the Fully Homomorphic Encryption Library plugin in Dart, we measure the amount of noise generated during encrypted operations in Section \ref{sec:Noise Accumulation}. In Section \ref{sec:Pop-Share Distance Measure}, we compare our implementation of our distance measures using the original pre-processed video frames from SSO. In Section \ref{sec:Field of View}, we compare the same video from various angles and determine the accuracy of our implementation. In Section \ref{sec:Scene Distance Measure}, we compare the distance measures for similar scenes against different scenes. In Section \ref{sec:Performance}, we compare the performance across multiple Linux and Android devices.
 
 \input{5 Results/5.1 Noise Accumulation}
 \input{5 Results/5.2 Pop-Share Distance Measure}
@@ -227,8 +227,69 @@ In this section, we compare our implementation to the foundational contributions
  
 % ========== Appendix A
  
-\chapter{Tables}
+\chapter{Supervised Learning}
+
+In this section, we present all of the configurations of the Supervised Artificial Neural Network experiments. We trained and tested the model on a small dataset of 100 minutes of raw videos, which included three twenty-minute videos of low movement featuring an individual sitting at a desk, denoted as \textit{office}, and two twenty-minute videos of high movement capturing an individual vacuuming his living room, denoted as \textit{vaccum} in Appendix Table \ref{table:appendix_ann}. We label \textit{default} representing the default parameters of the Multi-Layer Perceptron (MLP) Classifier \cite{scikit-learn}. The MLP Classifier used the Limited-memory Broyden-Fletcher-Goldfarb-Shanno (lbfgs) solver to apply weights within the neural network. The model was trained with two hidden layers, each with 10 neurons, and used Rectified Linear Unit (relu), a popular activation function in deep learning. Labeled as \textit{gridSearch}, a model fitting algorithm. Due to the visual similarity of the videos filmed indoors from the same devices, the grid search performs very well on training data but poorly on additional test data. Due to this overfitting pattern with grid search on our small dataset, we only considered results where we trained on one scene and tested on a different scene to ensure we have proper diversity.
  
-\input{Appendix/ANN Trials}
+\input{Appendix/Tables/ANN Trials}
+
+\chapter{Design Artifacts}
+
+In this section, we present the design artifacts used to develop GhostPeerShare. These artifacts serve as a visual aid to represent the author's intent. This is not a comprehensive collection of all classes within GhostPeerShare but only a subset to demonstrate the application's structure and organization.
+
+To optimize the application, Figure \ref{fig:appendix_manifestClass}, a singleton pattern used to manage imported videos, pre-processed byte-count arrays, and imported archives. This system manages the read-and-write flow of data throughout the application. This system enables preprocessing to only be run once and load previously imported videos.
+
+To implement modular support of various media types, GhostPeerShare defines additional media types. Figure \ref{fig:appendix_videoClass} demonstrates the abstraction pattern to support future media types rather than tightly coupling the application to only support videos. Furthermore, Figure \ref{fig:appendix_videoImportDataFlow} demonstrates the logic of adding a trimmed video to the manifest, and Figure \ref{fig:appendix_videoPreprocessDataFlow} is a separate intent to preprocess the video and cache the resulting byte-count array.
+
+Finally, to facilitate the import and export of encrypted data between instances, we used archives to compress and share larger, serialized objects, shown in Figure \ref{fig:appendix_archiveClass}. The contents of the \textit{CiphertextVideoZip} and \textit{ImportCiphertextVideoZip} are shown in Figure \ref{fig:appendix_archiveContentDataFlow}. To convey the intent, regardless of how data is transmitted between devices, the behavior of archives are shown in Figure \ref{fig:appendix_archiveDataFlow}.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Appendix/Figures/manifestClass.png}
+  \caption{UML Manifest Class Diagram}
+  \label{fig:appendix_manifestClass}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{Appendix/Figures/videoClass.png}
+  \caption{UML Video Class Diagram}
+  \label{fig:appendix_videoClass}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Appendix/Figures/videoImport.png}
+  \caption{Video Import Data Flow Diagram}
+  \label{fig:appendix_videoImportDataFlow}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Appendix/Figures/videoPreprocess.png}
+  \caption{Video Preprocess Data Flow Diagram}
+  \label{fig:appendix_videoPreprocessDataFlow}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Appendix/Figures/shareArchiveClass.png}
+  \caption{UML Archive Class Diagram}
+  \label{fig:appendix_archiveClass}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Appendix/Figures/ciphertextArchive.png}
+  \caption{Archive Contents}
+  \label{fig:appendix_archiveContentDataFlow}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Appendix/Figures/shareArchiveSequence.png}
+  \caption{Archive Data Flow}
+  \label{fig:appendix_archiveDataFlow}
+\end{figure*}
 
 \end{document}
