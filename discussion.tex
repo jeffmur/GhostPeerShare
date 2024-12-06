@@ -1,0 +1,32 @@
+\section{Qualitative Analysis}
+
+%   - Programmer usability - how would you measure that?
+% 	  - Developer Surveys?
+%   	* Learnability Metrics (Time to complete example, number of docs/references used)
+%   	* Likert-scale questions (rate the clarity of API / doc from 1 to 5)
+% 	  - Adoption Rate (pub.dev, Github)
+
+In order to address the usability of our Flutter application and Dart plugins, this section aims to propose methods of gathering qualitative metrics of our implementation that benefit the Flutter community and security researchers. There are two audiences we wish to target in this analysis: 1) Developers and 2) Security Researchers. Developers may be enthusiasts or professionals seeking access to integrate Fully Homomorphic Encryption within an existing or new application. Security Researchers may be trying to apply Fully Homomorphic Encryption to a novel problem or integrate a new C++ library into our FHEL plugin. To reach our target audience, we may employ developer surveys to gather data on consumers of our plugins, monitor the adoption rate using open-source tools, and publish a workshop paper to advertise and peer-review our implementation utilizing reputable journals.
+
+For developer surveys, we aim to gather information about each individual's programming knowledge or familiarity. Using a Likert-scale questionnaire, we may rate the clarity of our API documentation on a scale of 1 to 5. Using open-ended questions to capture insightful feedback from users who may be seeking additional functionality or identify gaps in our implementation. This structured survey format enables maintainers to assess the level of difficulty in integrating the plugins relative to each individual's experience with open-source projects. Gathering data on the consumers of our packages will help us understand their use cases and the greater impact of this project within the Flutter community. These surveys may be available on the distribution platforms the packages are hosted on, specifically GitHub and Pub.Dev.
+
+To capture the adoption rate of our packages, we may leverage the platforms on which they are hosted. The source code for this project is available on GitHub. Using the star functionality is a popular method of endorsing a project to receive notifications on development updates. The maintainers of this project may visualize the number of stars over time to measure the project's popularity.
+
+Pub.Dev is the official package repository for the Dart and Flutter community. The repository contains a comprehensive set of scores to measure the quality of each package, specifically popularity and pub points. To approximate the popularity of a package within the last 60 days, the repository contains a thumbs-up mechanism similar to the GitHub star button. This button is used as a quantitative metric of the number of developers who like the package. In addition, the number of downloads from distinct callers and the number of dependents contribute to the popularity score. A unique qualitative score, known as Pub Points, evaluates packages across five categories: Dart file conventions, documentation quality, platform support, static analysis, and support for up-to-date dependencies. The maximum achievable score is 160 points.
+
+The $fhel$ plugin received a Pub Score of 140 pub points, 1 likes, and a 27\% popularity score. On GitHub, the $fhel$ repository has received 5 stars from the community. The $fhe\_similarity\_score$ plugin has received a Pub Score of 150 points, 1 likes, and 42\% popularity score. On Github, the repository has received 1 star from the community.
+
+\section{Security Analysis}
+
+%   - Summarize from Pop-Share
+%   - Extend or restate...
+
+GhostPeerShare implements the methodology from Pop-Share as a Flutter application. The authors of Pop-Share presented two key insights in their security analysis: 1) Symmetric Key Cryptographic Equivalency and 2) Brute Force.
+
+First, the security of Fully Homomorphic Encryption (FHE) is equivalent to that of other symmetric key cryptosystems, and its strength depends on the chosen parameters. The security equivalency of FHE is a function of the ring dimension and the size of the ciphertext modulus \cite{Albrecht2021-standard}. By default, GhostPeerShare and Pop-Share balance security and performance by selecting a polynomial modulus of 4096, which is equivalent to a symmetric-key cryptosystem with a 128-bit key, such as the Advanced Encryption Standard (AES-128).
+
+Second, a brute-force attack is unlikely due to the high precision score of the SSO-based system, as demonstrated in Section \ref{sec:Field of View}. An attacker attempting to input a random video is highly unlikely to produce erroneous results. Since the attacker cannot ascertain how close their video was to being accepted as co-present, the information they can derive regarding the proximity of their video to acceptance is minimal. From a practical perspective, users may choose to discontinue interaction after a certain number of failed attempts.
+
+GhostPeerShare uses archives to package all ciphertext objects and metadata for data sharing between two nodes. However, these archives do not include signature validation and may be vulnerable to tampering. To mitigate this risk, a signature can be derived from the contents of the archive and sent as part of the payload. The recipient can then validate whether the signature matches their computation. From a practical standpoint, this solution requires users to decide how they share the archive with the recipient.
+
+On Android, QuickShare \cite{samsung_quick_2020} employs end-to-end encryption to secure data in transit. Samsung has also released Private Share for newer Android devices, allowing users to configure a time-to-live (TTL) for shared files. From a practical perspective, users can revoke access to their shared archive after a designated duration with no response.
